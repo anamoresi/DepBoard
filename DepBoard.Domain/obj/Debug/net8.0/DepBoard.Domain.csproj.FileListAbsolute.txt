@@ -1,0 +1,11 @@
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\bin\Debug\net8.0\DepBoard.Domain.deps.json
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\bin\Debug\net8.0\DepBoard.Domain.dll
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\bin\Debug\net8.0\DepBoard.Domain.pdb
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\DepBoard.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\DepBoard.Domain.AssemblyInfoInputs.cache
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\DepBoard.Domain.AssemblyInfo.cs
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\DepBoard.Domain.csproj.CoreCompileInputs.cache
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\DepBoard.Domain.dll
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\refint\DepBoard.Domain.dll
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\DepBoard.Domain.pdb
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Domain\obj\Debug\net8.0\ref\DepBoard.Domain.dll
