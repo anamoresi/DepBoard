@@ -8,9 +8,11 @@ namespace DepBoard.Application.Services
     {
         public IDbContext _contexto = context;
 
-        public async Task<ICollection<Aluno>> GetAlunos()
+        public async Task<List<Aluno>> GetAlunos()
         {
-            return await _contexto.Alunos.ToListAsync();
+            return await _contexto.Alunos
+                .Include(a => a.Curso)
+                .ToListAsync();
         }
 
         public async Task<Aluno?> GetAlunoByMatricula(string matricula)

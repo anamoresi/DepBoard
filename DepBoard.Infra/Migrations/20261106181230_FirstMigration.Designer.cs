@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DepBoard.Infra.Migrations
 {
     [DbContext(typeof(DepBoardDbContext))]
-    [Migration("20261105210408_PrimeiraMigration")]
-    partial class PrimeiraMigration
+    [Migration("20261106181230_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

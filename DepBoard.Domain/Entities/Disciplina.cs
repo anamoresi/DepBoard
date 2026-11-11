@@ -6,7 +6,6 @@
         public int IdExterno { get; private set; }
         public string Nome { get; private set; } = string.Empty;
         
-        // Navigations
         public ICollection<DisciplinaCurso> DisciplinaCursos { get; private set; } = new List<DisciplinaCurso>();
 
         private Disciplina(){}

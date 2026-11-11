@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DepBoard.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d1e43e5fa86bcf9646bb861cec05a8b26b5466e")]
 [assembly: System.Reflection.AssemblyProductAttribute("DepBoard.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DepBoard.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

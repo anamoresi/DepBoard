@@ -24,11 +24,10 @@ namespace DepBoard.Application.Services
             throw new NotImplementedException();//tu bota isso daq quando vc nao quer implmentar uma funcao mas nao quer q dê erro tlg
         }
 
-        public async Task<List<Curso>> GeAllCursos()
+        public async Task<List<Curso>> GetAllCursos()
         {
-            return await _dbContext.Cursos.ToListAsync();//puxa todos os cursos do banco e cria uma lista com todos eles e retorna essa lista
+            return await _dbContext.Cursos.ToListAsync();
+            //puxa todos os cursos do banco e cria uma lista com todos eles e retorna essa lista
         }
-
-
     }
 }

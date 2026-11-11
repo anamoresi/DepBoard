@@ -152,3 +152,4 @@ C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.0\DepBoard.Presentation.pdb
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.0\DepBoard.Presentation.genruntimeconfig.cache
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.0\ref\DepBoard.Presentation.dll
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.0\DepBoard.Presentation.sourcelink.json

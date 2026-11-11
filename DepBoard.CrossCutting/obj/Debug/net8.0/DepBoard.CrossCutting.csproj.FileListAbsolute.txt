@@ -17,3 +17,4 @@ C:\Users\80394\Documents\depboard\DepBoard\DepBoard.CrossCutting\obj\Debug\net8.
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.CrossCutting\obj\Debug\net8.0\refint\DepBoard.CrossCutting.dll
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.CrossCutting\obj\Debug\net8.0\DepBoard.CrossCutting.pdb
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.CrossCutting\obj\Debug\net8.0\ref\DepBoard.CrossCutting.dll
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.CrossCutting\obj\Debug\net8.0\DepBoard.CrossCutting.sourcelink.json

@@ -1,0 +1,24 @@
+﻿@model List<DepBoard.Presentation.ViewModels.CursoViewModel>
+
+<h1>Cursos</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Unidade</th>
+            <th>Turno</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var curso in Model)
+        {
+            <tr>
+                <td>@curso.Nome</td>
+                <td>@curso.Unidade</td>
+                <td>@curso.Turno</td>
+            </tr>
+        }
+    </tbody>
+</table>

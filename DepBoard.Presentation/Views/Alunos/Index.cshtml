@@ -1,0 +1,30 @@
+﻿@model List<DepBoard.Presentation.ViewModels.AlunoViewModel>
+
+<h1>Alunos</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Matrícula</th>
+            <th>Curso</th>
+            <th>Notas</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var aluno in Model)
+        {
+            <tr>
+                <td>@aluno.Nome</td>
+                <td>@aluno.Matricula</td>
+                <td>@aluno.Curso</td>
+                <td>@foreach (var nota in aluno.Notas)
+                    {
+                        <p>@nota</p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

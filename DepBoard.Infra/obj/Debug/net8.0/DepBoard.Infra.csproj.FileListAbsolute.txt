@@ -17,3 +17,4 @@ C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Infra\obj\Debug\net8.0\refin
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Infra\obj\Debug\net8.0\DepBoard.Infra.pdb
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Infra\obj\Debug\net8.0\DepBoard.Infra.genruntimeconfig.cache
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Infra\obj\Debug\net8.0\ref\DepBoard.Infra.dll
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Infra\obj\Debug\net8.0\DepBoard.Infra.sourcelink.json
