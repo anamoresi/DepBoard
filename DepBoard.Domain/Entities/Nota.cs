@@ -10,18 +10,18 @@
         public int IdDisciplinaCurso { get; private set; }
         public DisciplinaCurso DisciplinaCurso { get; private set; } = null!;
 
-        public int Perletivo { get; private set; }
-        public double Av1 { get; private set; }
-        public double Av2 { get; private set; }
-        public double SegundaChamada { get; private set; }
-        public double ProvaFinal { get; private set; }
+        public string Perletivo { get; private set; } = string.Empty;
+        public double? AV1 { get; private set; }
+        public double? AV2 { get; private set; }
+        public double? SegundaChamada { get; private set; }
+        public double? ProvaFinal { get; private set; }
 
         private Nota(){}
 
         public Nota(
             Aluno aluno,
             DisciplinaCurso disciplinaCurso,
-            int perletivo,
+            string perletivo,
             double av1,
             double av2,
             double segundaChamada,
@@ -30,8 +30,8 @@
             this.Aluno = aluno;
             this.DisciplinaCurso = disciplinaCurso;
             this.Perletivo = perletivo;
-            this.Av1 = av1;
-            this.Av2 = av2;
+            this.AV1 = av1;
+            this.AV2 = av2;
             this.SegundaChamada = segundaChamada;
             this.ProvaFinal = provaFinal;
         }

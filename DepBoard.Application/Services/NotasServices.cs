@@ -18,7 +18,7 @@ namespace DepBoard.Application.Services
             return await _context.Notas.ToListAsync();
         }
 
-        public async Task<ICollection<Nota>> GetByPerletivo(int perletivo)
+        public async Task<ICollection<Nota>> GetByPerletivo(string perletivo)
         {
             return await _context.Notas
                 .Where(d => d.Perletivo == perletivo)

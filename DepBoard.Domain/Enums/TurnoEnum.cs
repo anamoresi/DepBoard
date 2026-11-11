@@ -2,8 +2,8 @@
 {
     public enum TurnoEnum
     {
-        Matutino,
-        Noturno, 
-        Integral
+        Matutino = 1,
+        Noturno = 2, 
+        Integral = 3
     }
 }

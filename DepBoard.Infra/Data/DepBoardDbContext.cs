@@ -33,8 +33,6 @@ namespace DepBoard.Infra.Data
             {
                 entity.HasKey(c => c.IdCurso);
                 entity.Property(c => c.Nome).HasMaxLength(100);
-                entity.Property(c => c.Turno).HasConversion<string>();
-                entity.Property(c => c.Unidade).HasConversion<string>();
             });
 
             modelBuilder.Entity<Disciplina>(entity =>
@@ -57,6 +55,14 @@ namespace DepBoard.Infra.Data
                 .HasForeignKey(dc => dc.IdCurso)
                 .OnDelete(DeleteBehavior.Cascade);
 
+                entity.HasOne(dc => dc.Professor)
+                .WithMany(p => p.DisciplinaCursos)
+                .HasForeignKey(dc => dc.IdProfessor);
+            });
+
+            modelBuilder.Entity<Professor>(entity =>
+            {
+                entity.HasKey(p => p.IdProfessor);
             });
 
             modelBuilder.Entity<Nota>(entity =>

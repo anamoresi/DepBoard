@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DepBoard.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d1e43e5fa86bcf9646bb861cec05a8b26b5466e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ebb63a7428fb40648b5cfebd4f9f58ecb6828e5b")]
 [assembly: System.Reflection.AssemblyProductAttribute("DepBoard.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DepBoard.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

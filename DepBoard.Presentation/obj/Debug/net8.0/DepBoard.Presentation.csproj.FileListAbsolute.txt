@@ -153,3 +153,5 @@ C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.0\DepBoard.Presentation.genruntimeconfig.cache
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.0\ref\DepBoard.Presentation.dll
 C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\obj\Debug\net8.0\DepBoard.Presentation.sourcelink.json
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\bin\Debug\net8.0\package-lock.json
+C:\Users\80394\Documents\depboard\DepBoard\DepBoard.Presentation\bin\Debug\net8.0\package.json

@@ -15,6 +15,7 @@ namespace DepBoard.CrossCutting
             services.AddScoped<AlunosServices>();
             services.AddScoped<NotasServices>();
             services.AddScoped<CursosServices>();
+            services.AddScoped<DisciplinasServices>();
             return services;
         }
 

@@ -16,6 +16,10 @@ namespace DepBoard.Domain.Entities
         public int IdDisciplina { get; private set; }
         public Disciplina Disciplina { get; private set; } = null!;
 
+        public int IdProfessor { get; private set; }
+        public Professor Professor { get; private set; } = null!;
+
+        public string Perletivo { get; private set; } = string.Empty;
         public ICollection<Nota> Notas { get; private set; } = new List<Nota>();
 
         private DisciplinaCurso(){}
