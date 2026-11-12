@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -16,6 +16,12 @@
     <None Remove="Views\Home\**" />
     <None Remove="Views\NovaPasta\**" />
   </ItemGroup>
+
+    <ItemGroup>
+	    <UpToDateCheckInput Include="Styles\input.css" />
+	    <UpToDateCheckInput Include="Views\**\*.cshtml" />
+	    <UpToDateCheckBuilt Include="wwwroot\css\tailwind.css" Original="Styles\input.css" />
+    </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Controllers\HomeController.cs" />
@@ -35,5 +41,20 @@
   <ItemGroup>
     <ProjectReference Include="..\DepBoard.CrossCutting\DepBoard.CrossCutting.csproj" />
   </ItemGroup>
-  <!--Filipe passou por aqui e eu tenho quase certeza q NGM nunca vai ver isso daq, só se alguem clicar sem querer no DepBoard.Presentation KKKKKKKKK e olha q a Ana ta aq do meu lado E NAO TA VENDO NADA KKKKKKKKKKKKKKKKKKKKKKKKKKKK-->
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
+	<Target Name="InstalarNpm" BeforeTargets="GerarTailwind" Condition="!Exists('$(MSBuildProjectDirectory)\node_modules') And '$(DesignTimeBuild)' != 'true'">
+		<Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)" ContinueOnError="WarnAndContinue" />
+	</Target>
+
+	<Target Name="InstalarNpm" BeforeTargets="GerarTailwind" Condition="!Exists('$(MSBuildProjectDirectory)\node_modules') And '$(DesignTimeBuild)' != 'true'">
+		<Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)" />
+	</Target>
+
+	<Target Name="GerarTailwind" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
+		<Exec Command="npm run css:build" WorkingDirectory="$(MSBuildProjectDirectory)" />
+	</Target>
 </Project>
