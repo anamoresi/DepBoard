@@ -1,6 +1,7 @@
 ﻿namespace DepBoard.Presentation.ViewModels
 {
     public record OpcaoViewModel(int Id, string Nome);
+
     public record DisciplinaNotaViewModel(
         string Disciplina,
         string Perletivo,
@@ -17,9 +18,15 @@
         string Curso,
         double? MediaGeral,
         List<DisciplinaNotaViewModel> Disciplinas);
+
     public class AlunosIndexViewModel
     {
         public List<AlunoViewModel> Alunos { get; init; } = new();
+
+        // Paginação
+        public int Pagina { get; init; } = 1;
+        public int TotalPaginas { get; init; } = 1;
+        public int TotalAlunos { get; init; }
 
         public string? Nome { get; init; }
         public int? IdCurso { get; init; }

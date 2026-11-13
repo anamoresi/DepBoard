@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DepBoard.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b7df6631257c3a97e577a34f8b190139485f454")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93320d8c77cce00151f8387cfff1dfcbc2cba229")]
 [assembly: System.Reflection.AssemblyProductAttribute("DepBoard.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DepBoard.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

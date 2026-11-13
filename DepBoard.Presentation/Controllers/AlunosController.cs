@@ -6,6 +6,8 @@ namespace DepBoard.Presentation.Controllers
 {
     public class AlunosController : Controller
     {
+        private const int TamanhoPagina = 20;
+
         private readonly AlunosServices _alunosServices;
         private readonly CursosServices _cursosServices;
 
@@ -15,7 +17,7 @@ namespace DepBoard.Presentation.Controllers
             _cursosServices = cursosServices;
         }
 
-        public async Task<IActionResult> Index(string? nome, int? idCurso, string? media, List<string>? perletivo)
+        public async Task<IActionResult> Index(string? nome, int? idCurso, string? media, List<string>? perletivo, int pagina = 1)
         {
             var selecionados = perletivo ?? new List<string>();
             var alunos = await _alunosServices.GetAlunosFiltrados(nome, idCurso);
@@ -50,11 +52,24 @@ namespace DepBoard.Presentation.Controllers
             else if (media == "menor")
                 lista = lista.Where(a => a.MediaGeral < CalculadoraNotas.MediaAprovacao).ToList();
 
+            // Paginação: pega só a fatia da página atual
+            int totalAlunos = lista.Count;
+            int totalPaginas = Math.Max(1, (int)Math.Ceiling(totalAlunos / (double)TamanhoPagina));
+            pagina = Math.Clamp(pagina, 1, totalPaginas);
+
+            var paginaAtual = lista
+                .Skip((pagina - 1) * TamanhoPagina)
+                .Take(TamanhoPagina)
+                .ToList();
+
             var cursos = await _cursosServices.GetAllCursos();
 
             var model = new AlunosIndexViewModel
             {
-                Alunos = lista,
+                Alunos = paginaAtual,
+                Pagina = pagina,
+                TotalPaginas = totalPaginas,
+                TotalAlunos = totalAlunos,
                 Nome = nome,
                 IdCurso = idCurso,
                 Media = media,

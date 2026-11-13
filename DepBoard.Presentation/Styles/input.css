@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-    --color-seashell: #FFF4EB;
-    --color-wheat: #fcf6e8;
-    --color-powder: #A6BCC9;
-    --color-french: #3E4B8E;
+    --color-seashell: #ebf5ff;
+    --color-wheat: #ebf5ff;
+    --color-powder: #1f345e;
+    --color-french: #1f345e;
     --color-midnight: #3D1534;
     /* Powder Blue bem clarinho: fundo gelo */
     --color-ice: #EEF3F8;
 }
 
 @theme inline {
-    --color-page: #fcf6e8;
+    --color-page: #ebf5ff;
     --color-surface: var(--color-seashell); /* cartões, tabelas */
     --color-sidebar: var(--color-french); /* menu lateral */
     --color-ink: var(--color-midnight); /* texto principal */

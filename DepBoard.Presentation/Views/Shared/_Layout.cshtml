@@ -8,12 +8,12 @@
 </head>
 
 <body class="bg-page text-ink">
-    <div class="flex min-h-screen gap-4 p-4">
+    <div class="flex min-h-screen">
         <partial name="_Sidebar" />
 
-        <div class="flex-1 min-w-0 grid gap-4 grid-cols-1 xl:grid-cols-[minmax(0,1fr)_20rem]">
+        <div class="flex-1 min-w-0 grid gap-4 grid-cols-1 xl:grid-cols-[minmax(0,1fr)_20rem] pe-4">
 
-            <main class="min-w-0 rounded-3xl bg-white ring-1 ring-line/40 shadow-sm p-6">
+            <main class="min-w-0 bg-white ring-1 ring-line/40 shadow-sm p-6">
                 @RenderBody()
             </main>
 

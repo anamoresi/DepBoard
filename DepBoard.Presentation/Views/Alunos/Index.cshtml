@@ -12,13 +12,25 @@
 
     static string CorMedia(double? m) =>
         m is null ? "text-ink/40" : (m >= 7 ? "text-emerald-700" : "text-rose-700");
+
+    // Monta o link de uma página mantendo os filtros que já estão na URL
+    string Link(int pagina)
+    {
+        var partes = Context.Request.Query
+            .Where(q => q.Key != "pagina")
+            .SelectMany(q => q.Value.Select(v =>
+                $"{Uri.EscapeDataString(q.Key)}={Uri.EscapeDataString(v ?? "")}"))
+            .Append($"pagina={pagina}");
+        return "?" + string.Join("&", partes);
+    }
 }
 
 <div class="flex items-baseline justify-between">
     <h1 class="text-2xl font-semibold">Alunos</h1>
-    <span class="text-sm text-ink/60">@Model.Alunos.Count aluno(s)</span>
+    <span class="text-sm text-ink/60">@Model.TotalAlunos aluno(s)</span>
 </div>
 
+@* Filtros *@
 <form method="get" asp-action="Index" class="mt-4 rounded-2xl bg-ice p-4">
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-[2fr_2fr_1.2fr_auto]">
@@ -84,14 +96,15 @@
                     <input type="checkbox" name="perletivo" value="@p" data-perletivo class="peer sr-only"
                            checked="@(Model.PerletivosSelecionados.Contains(p))" />
                     <span class="inline-block rounded-full border border-line bg-white px-3 py-1 text-sm
-                                             peer-checked:border-french peer-checked:bg-french peer-checked:text-seashell
-                                             peer-focus-visible:ring-2 peer-focus-visible:ring-french">@p</span>
+                                     peer-checked:border-french peer-checked:bg-french peer-checked:text-seashell
+                                     peer-focus-visible:ring-2 peer-focus-visible:ring-french">@p</span>
                 </label>
             }
         </div>
     </fieldset>
 </form>
 
+@* Lista *@
 @if (Model.Alunos.Count == 0)
 {
     <p class="mt-8 text-center text-ink/60">Nenhum aluno encontrado com esses filtros.</p>
@@ -111,8 +124,8 @@ else
         {
             <details class="group border-t border-line/40">
                 <summary class="grid grid-cols-[1fr_auto_1.5rem] md:grid-cols-[2fr_1fr_2fr_5rem_1.5rem] items-center gap-4
-                                                        px-4 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden
-                                                        rounded-xl hover:bg-ice">
+                                        px-4 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden
+                                        rounded-xl hover:bg-ice">
                     <span class="font-medium">@aluno.Nome</span>
                     <span class="hidden md:block text-ink/70">@aluno.Matricula</span>
                     <span class="hidden md:block truncate text-ink/70">@aluno.Curso</span>
@@ -164,9 +177,75 @@ else
                 </div>
             </details>
         }
+
+        @* Paginação *@
+        @if (Model.TotalPaginas > 1)
+        {
+            var atual = Model.Pagina;
+            var totalPag = Model.TotalPaginas;
+            var inicio = (atual - 1) * 20 + 1;
+            var fim = inicio + Model.Alunos.Count - 1;
+
+            var paginas = new List<int>();
+            for (var i = 1; i <= totalPag; i++)
+            {
+                if (i == 1 || i == totalPag || Math.Abs(i - atual) <= 2) paginas.Add(i);
+            }
+            var anterior = 0;
+
+            <nav aria-label="Paginação"
+                 class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-line/40 pt-4">
+                <p class="text-sm text-ink/60">Mostrando @inicio–@fim de @Model.TotalAlunos</p>
+
+                <ul class="flex items-center gap-1">
+                    <li>
+                        @if (atual > 1)
+                        {
+                            <a href="@Link(atual - 1)" class="rounded-xl px-3 py-2 text-sm hover:bg-ice">Anterior</a>
+                        }
+                        else
+                        {
+                            <span class="rounded-xl px-3 py-2 text-sm opacity-40">Anterior</span>
+                        }
+                    </li>
+
+                    @foreach (var pg in paginas)
+                    {
+                        if (pg - anterior > 1)
+                        {
+                            <li class="px-1 text-ink/40">…</li>
+                        }
+                        anterior = pg;
+
+                        <li>
+                            @if (pg == atual)
+                            {
+                                <span aria-current="page"
+                                      class="grid size-9 place-items-center rounded-xl bg-french text-sm font-semibold text-seashell">@pg</span>
+                            }
+                            else
+                            {
+                                <a href="@Link(pg)" class="grid size-9 place-items-center rounded-xl text-sm hover:bg-ice">@pg</a>
+                            }
+                        </li>
+                    }
+
+                    <li>
+                        @if (atual < totalPag)
+                        {
+                            <a href="@Link(atual + 1)" class="rounded-xl px-3 py-2 text-sm hover:bg-ice">Próxima</a>
+                        }
+                        else
+                        {
+                            <span class="rounded-xl px-3 py-2 text-sm opacity-40">Próxima</span>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        }
     </div>
 }
 
 @section Lateral {
-    <h2 class="text-lg font-semibold">Comparações</h2>  
+    <h2 class="text-lg font-semibold">Comparações</h2>
 }
