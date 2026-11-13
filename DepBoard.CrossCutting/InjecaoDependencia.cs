@@ -11,7 +11,7 @@ namespace DepBoard.CrossCutting
     {
         public static IServiceCollection AddServicosApplication(
             this IServiceCollection services)
-        {
+        { //o kaua e f
             services.AddScoped<AlunosServices>();
             services.AddScoped<NotasServices>();
             services.AddScoped<CursosServices>();

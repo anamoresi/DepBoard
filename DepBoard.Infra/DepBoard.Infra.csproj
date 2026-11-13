@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+	<!--o nick se sujou de banana-->
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.31" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.31" />

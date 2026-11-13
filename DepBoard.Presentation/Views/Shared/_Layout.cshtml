@@ -1,21 +1,22 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/css/tailwind.css" />
-    <title>@ViewData["Title"] - DepBoard.Presentation</title>
+    <link rel="stylesheet" href="~/css/tailwind.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - AdpDepBoard</title>
 </head>
 
-<body>
-    <div class="flex">
+<body class="bg-page text-ink">
+    <div class="flex min-h-screen">
         <partial name="_Sidebar" />
 
-        <main class="bg-dark">
+        <main class="flex-1 min-w-0 p-6">
             @RenderBody()
         </main>
-
     </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 
 </html>

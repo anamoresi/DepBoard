@@ -16,7 +16,7 @@
     <None Remove="Views\Home\**" />
     <None Remove="Views\NovaPasta\**" />
   </ItemGroup>
-
+	<!--a ana viu eu comentando mas nn ta vendo agr KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK olha isso cara nn e possivel-->
     <ItemGroup>
 	    <UpToDateCheckInput Include="Styles\input.css" />
 	    <UpToDateCheckInput Include="Views\**\*.cshtml" />
@@ -48,10 +48,6 @@
 
 	<Target Name="InstalarNpm" BeforeTargets="GerarTailwind" Condition="!Exists('$(MSBuildProjectDirectory)\node_modules') And '$(DesignTimeBuild)' != 'true'">
 		<Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)" ContinueOnError="WarnAndContinue" />
-	</Target>
-
-	<Target Name="InstalarNpm" BeforeTargets="GerarTailwind" Condition="!Exists('$(MSBuildProjectDirectory)\node_modules') And '$(DesignTimeBuild)' != 'true'">
-		<Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)" />
 	</Target>
 
 	<Target Name="GerarTailwind" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
