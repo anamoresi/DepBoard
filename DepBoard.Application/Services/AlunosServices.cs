@@ -27,5 +27,34 @@ namespace DepBoard.Application.Services
                 .Where(a=> a.IdCurso == idCurso)
                 .ToListAsync();
         }
+
+        public async Task<List<Aluno>> GetAlunosFiltrados(string? nome, int? idCurso)
+        {
+            IQueryable<Aluno> query = _contexto.Alunos
+                .AsNoTracking()
+                .Include(a => a.Curso)
+                .Include(a => a.Notas)
+                    .ThenInclude(n => n.DisciplinaCurso)
+                        .ThenInclude(dc => dc.Disciplina);
+
+            if (!string.IsNullOrWhiteSpace(nome))
+                query = query.Where(a => a.Nome.Contains(nome));
+
+            if (idCurso.HasValue)
+                query = query.Where(a => a.IdCurso == idCurso.Value);
+
+            return await query
+                .OrderBy(a => a.Nome)
+                .ToListAsync();
+        }
+
+        public async Task<List<string>> GetPerletivos()
+        {
+            return await _contexto.Notas
+                .Select(n => n.Perletivo)
+                .Distinct()
+                .OrderBy(p => p)
+                .ToListAsync();
+        }
     }
 }

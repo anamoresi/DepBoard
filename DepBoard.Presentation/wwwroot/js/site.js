@@ -21,3 +21,18 @@
         try { localStorage.setItem(CHAVE, colapsada ? '1' : '0'); } catch { }
     });
 })();
+
+(function () {
+    const todos = document.getElementById('perletivo-todos');
+    if (!todos) return;
+    const periodos = document.querySelectorAll('input[data-perletivo]');
+    const algumMarcado = () => Array.from(periodos).some(p => p.checked);
+
+    todos.addEventListener('change', function () {
+        if (todos.checked) periodos.forEach(p => p.checked = false);
+        else if (!algumMarcado()) todos.checked = true;
+    });
+    periodos.forEach(p => p.addEventListener('change', function () {
+        todos.checked = !algumMarcado();
+    }));
+})();

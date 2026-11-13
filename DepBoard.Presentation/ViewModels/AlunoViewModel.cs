@@ -1,20 +1,32 @@
-﻿using DepBoard.Domain.Entities;
-
-namespace DepBoard.Presentation.ViewModels
+﻿namespace DepBoard.Presentation.ViewModels
 {
-    public class AlunoViewModel
-    {
-        public string Nome { get; init; }
-        public string Matricula { get; init; }
-        public string Curso { get; init; }
-        public List<Nota> Notas { get; init; }
+    public record OpcaoViewModel(int Id, string Nome);
+    public record DisciplinaNotaViewModel(
+        string Disciplina,
+        string Perletivo,
+        double? AV1,
+        double? AV2,
+        double? SegundaChamada,
+        double? ProvaFinal,
+        double? Media
+        );
 
-        public AlunoViewModel (string nome, string matricula, string curso, List<Nota> notas)
-        {
-            Nome = nome;
-            Matricula = matricula;
-            Curso = curso;
-            Notas = notas;
-        }
+    public record AlunoViewModel(
+        string Nome,
+        string Matricula,
+        string Curso,
+        double? MediaGeral,
+        List<DisciplinaNotaViewModel> Disciplinas);
+    public class AlunosIndexViewModel
+    {
+        public List<AlunoViewModel> Alunos { get; init; } = new();
+
+        public string? Nome { get; init; }
+        public int? IdCurso { get; init; }
+        public string? Media { get; init; }
+        public List<string> PerletivosSelecionados { get; init; } = new();
+
+        public List<OpcaoViewModel> Cursos { get; init; } = new();
+        public List<string> PerletivosDisponiveis { get; init; } = new();
     }
 }

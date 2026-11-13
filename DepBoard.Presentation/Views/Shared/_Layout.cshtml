@@ -8,12 +8,21 @@
 </head>
 
 <body class="bg-page text-ink">
-    <div class="flex min-h-screen">
+    <div class="flex min-h-screen gap-4 p-4">
         <partial name="_Sidebar" />
 
-        <main class="flex-1 min-w-0 p-6">
-            @RenderBody()
-        </main>
+        <div class="flex-1 min-w-0 grid gap-4 grid-cols-1 xl:grid-cols-[minmax(0,1fr)_20rem]">
+
+            <main class="min-w-0 rounded-3xl bg-white ring-1 ring-line/40 shadow-sm p-6">
+                @RenderBody()
+            </main>
+
+            <aside class="rounded-3xl bg-white ring-1 ring-line/40 shadow-sm p-6 overflow-y-auto
+                          xl:sticky xl:top-4 xl:self-start xl:h-[calc(100vh-2rem)]">
+                @RenderSection("Lateral", required: false)
+            </aside>
+
+        </div>
     </div>
 
     <script src="~/js/site.js" asp-append-version="true"></script>

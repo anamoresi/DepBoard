@@ -2,7 +2,7 @@
 
 @theme {
     --color-seashell: #FFF4EB;
-    --color-wheat: #F6E0B6;
+    --color-wheat: #fcf6e8;
     --color-powder: #A6BCC9;
     --color-french: #3E4B8E;
     --color-midnight: #3D1534;
@@ -11,7 +11,7 @@
 }
 
 @theme inline {
-    --color-page: #FFF4EB;
+    --color-page: #fcf6e8;
     --color-surface: var(--color-seashell); /* cartões, tabelas */
     --color-sidebar: var(--color-french); /* menu lateral */
     --color-ink: var(--color-midnight); /* texto principal */

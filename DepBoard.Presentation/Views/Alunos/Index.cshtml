@@ -1,33 +1,172 @@
-﻿@model List<DepBoard.Presentation.ViewModels.AlunoViewModel>
+﻿@model DepBoard.Presentation.ViewModels.AlunosIndexViewModel
 
-<h1>Alunos</h1>
+@functions {
+    static string Fmt(double? v) => v.HasValue ? v.Value.ToString("0.0") : "–";
 
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Matrícula</th>
-            <th>Curso</th>
-            <th>Notas</th>
-        </tr>
-    </thead>
+    static string CorSituacao(string s) => s switch
+    {
+        "Aprovado" => "bg-emerald-100 text-emerald-800",
+        "Reprovado" => "bg-rose-100 text-rose-800",
+        _ => "bg-slate-100 text-slate-600"
+    };
 
-    <tbody>
-        @foreach (var aluno in Model)
+    static string CorMedia(double? m) =>
+        m is null ? "text-ink/40" : (m >= 7 ? "text-emerald-700" : "text-rose-700");
+}
+
+<div class="flex items-baseline justify-between">
+    <h1 class="text-2xl font-semibold">Alunos</h1>
+    <span class="text-sm text-ink/60">@Model.Alunos.Count aluno(s)</span>
+</div>
+
+<form method="get" asp-action="Index" class="mt-4 rounded-2xl bg-ice p-4">
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-[2fr_2fr_1.2fr_auto]">
+
+        <div>
+            <label for="nome" class="text-xs font-semibold uppercase tracking-wide text-ink/60">Nome</label>
+            <input id="nome" name="nome" type="text" value="@Model.Nome" placeholder="Buscar por nome"
+                   class="mt-1 w-full rounded-xl border border-line bg-white px-3 py-2 text-sm
+                          focus:outline-none focus:ring-2 focus:ring-french" />
+        </div>
+
+        <div>
+            <label for="idCurso" class="text-xs font-semibold uppercase tracking-wide text-ink/60">Curso</label>
+            <select id="idCurso" name="idCurso"
+                    class="mt-1 w-full rounded-xl border border-line bg-white px-3 py-2 text-sm
+                           focus:outline-none focus:ring-2 focus:ring-french">
+                <option value="">Todos os cursos</option>
+                @foreach (var curso in Model.Cursos)
+                {
+                    <option value="@curso.Id" selected="@(Model.IdCurso == curso.Id)">@curso.Nome</option>
+                }
+            </select>
+        </div>
+
+        <div>
+            <label for="media" class="text-xs font-semibold uppercase tracking-wide text-ink/60">Média geral</label>
+            <select id="media" name="media"
+                    class="mt-1 w-full rounded-xl border border-line bg-white px-3 py-2 text-sm
+                           focus:outline-none focus:ring-2 focus:ring-french">
+                <option value="">Todas</option>
+                <option value="maior" selected="@(Model.Media == "maior")">Média &gt;= 7</option>
+                <option value="menor" selected="@(Model.Media == "menor")">Média &lt; 7</option>
+            </select>
+        </div>
+
+        <div class="flex items-end gap-2">
+            <button type="submit"
+                    class="cursor-pointer rounded-xl bg-french px-5 py-2 text-sm font-medium text-seashell hover:bg-midnight">
+                Filtrar
+            </button>
+            <a asp-action="Index"
+               class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-medium hover:bg-seashell">
+                Limpar
+            </a>
+        </div>
+    </div>
+
+    <fieldset class="mt-4">
+        <legend class="text-xs font-semibold uppercase tracking-wide text-ink/60">Perletivo</legend>
+        <div class="mt-2 flex flex-wrap gap-2">
+
+            <label class="cursor-pointer">
+                <input id="perletivo-todos" type="checkbox" class="peer sr-only"
+                       checked="@(Model.PerletivosSelecionados.Count == 0)" />
+                <span class="inline-block rounded-full border border-line bg-white px-3 py-1 text-sm
+                             peer-checked:border-french peer-checked:bg-french peer-checked:text-seashell
+                             peer-focus-visible:ring-2 peer-focus-visible:ring-french">Todos</span>
+            </label>
+
+            @foreach (var p in Model.PerletivosDisponiveis)
+            {
+                <label class="cursor-pointer">
+                    <input type="checkbox" name="perletivo" value="@p" data-perletivo class="peer sr-only"
+                           checked="@(Model.PerletivosSelecionados.Contains(p))" />
+                    <span class="inline-block rounded-full border border-line bg-white px-3 py-1 text-sm
+                                             peer-checked:border-french peer-checked:bg-french peer-checked:text-seashell
+                                             peer-focus-visible:ring-2 peer-focus-visible:ring-french">@p</span>
+                </label>
+            }
+        </div>
+    </fieldset>
+</form>
+
+@if (Model.Alunos.Count == 0)
+{
+    <p class="mt-8 text-center text-ink/60">Nenhum aluno encontrado com esses filtros.</p>
+}
+else
+{
+    <div class="mt-4">
+        <div class="hidden md:grid grid-cols-[2fr_1fr_2fr_5rem_1.5rem] gap-4 px-4 pb-2 text-xs font-semibold uppercase tracking-wide text-ink/60">
+            <span>Nome</span>
+            <span>Matrícula</span>
+            <span>Curso</span>
+            <span class="text-right">Média</span>
+            <span></span>
+        </div>
+
+        @foreach (var aluno in Model.Alunos)
         {
-            <tr>
-                <td>@aluno.Nome</td>
-                <td>@aluno.Matricula</td>
-                <td>@aluno.Curso</td>
-                <td>@foreach (var nota in aluno.Notas)
+            <details class="group border-t border-line/40">
+                <summary class="grid grid-cols-[1fr_auto_1.5rem] md:grid-cols-[2fr_1fr_2fr_5rem_1.5rem] items-center gap-4
+                                                        px-4 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden
+                                                        rounded-xl hover:bg-ice">
+                    <span class="font-medium">@aluno.Nome</span>
+                    <span class="hidden md:block text-ink/70">@aluno.Matricula</span>
+                    <span class="hidden md:block truncate text-ink/70">@aluno.Curso</span>
+                    <span class="text-right font-semibold @CorMedia(aluno.MediaGeral)">@Fmt(aluno.MediaGeral)</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round"
+                         class="size-5 text-ink/50 transition-transform group-open:rotate-180" aria-hidden="true">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </summary>
+
+                <div class="px-4 pb-4">
+                    @if (aluno.Disciplinas.Count == 0)
                     {
-                        <p>@nota</p>
+                        <p class="rounded-xl bg-ice p-3 text-sm text-ink/60">Sem notas lançadas.</p>
                     }
-                </td>
-
-            </tr>
+                    else
+                    {
+                        <div class="overflow-x-auto rounded-2xl bg-ice">
+                            <table class="w-full text-sm">
+                                <thead class="text-xs uppercase tracking-wide text-ink/60">
+                                    <tr class="text-left">
+                                        <th class="px-3 py-2 font-semibold">Disciplina</th>
+                                        <th class="px-3 py-2 font-semibold">Perletivo</th>
+                                        <th class="px-3 py-2 text-center font-semibold">AV1</th>
+                                        <th class="px-3 py-2 text-center font-semibold">AV2</th>
+                                        <th class="px-3 py-2 text-center font-semibold">2ª Chamada</th>
+                                        <th class="px-3 py-2 text-center font-semibold">Prova Final</th>
+                                        <th class="px-3 py-2 text-center font-semibold">Média</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var d in aluno.Disciplinas)
+                                    {
+                                        <tr class="border-t border-line/40">
+                                            <td class="px-3 py-2 font-medium">@d.Disciplina</td>
+                                            <td class="px-3 py-2 text-ink/70">@d.Perletivo</td>
+                                            <td class="px-3 py-2 text-center">@Fmt(d.AV1)</td>
+                                            <td class="px-3 py-2 text-center">@Fmt(d.AV2)</td>
+                                            <td class="px-3 py-2 text-center">@Fmt(d.SegundaChamada)</td>
+                                            <td class="px-3 py-2 text-center">@Fmt(d.ProvaFinal)</td>
+                                            <td class="px-3 py-2 text-center font-semibold @CorMedia(d.Media)">@Fmt(d.Media)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </details>
         }
+    </div>
+}
 
-
-    </tbody>
-</table>
+@section Lateral {
+    <h2 class="text-lg font-semibold">Comparações</h2>  
+}
